@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 
 regex = r'music.apple.com/(\S+)'
 
+
 def get_info_by_url(url: str) -> str:
     url = re.sub('com/\w+/', 'com/en/', url)
     req = requests.get(url).text
