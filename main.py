@@ -1,12 +1,8 @@
-from platforms import vk
-from platforms import yandex
-from platforms import spotify
-from platforms import applemus
-
+from platforms import vk, yandex, spotify, applemus
 from vk_api.longpoll import VkEventType
 
 
-def attached_to_links(event) -> None:
+def attached_to_links(event: dict) -> None:
     # VK ATTECHED AUDIO -> OTHER PLATFORMS
     audio_id = event.attachments.get('attach1')
     query = vk.get_audio_by_id(audio_id)
