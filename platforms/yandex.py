@@ -26,4 +26,4 @@ def get_track_by_name(query: str) -> str:
         trackID = best['result']['id']
         return f'https://music.yandex.ru/album/{albumID}/track/{trackID}'
     else:
-        return "Трек не найден..."
+        return "Трек не был найден..."

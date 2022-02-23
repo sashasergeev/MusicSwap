@@ -2,12 +2,10 @@ from decouple import config
 import json
 import vk_api
 import requests
-from vk_api.longpoll import VkLongPoll
 
 # VK AUTH
 token = config('VK_AUTH_TOKEN')
 vk = vk_api.VkApi(token=token)
-longpoll = VkLongPoll(vk)
 
 # VK AUDIO API
 token_audio = config('VK_AUTH_TOKEN_KATE')

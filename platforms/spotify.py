@@ -29,5 +29,8 @@ def get_track_by_id(url: str) -> str:
 
 
 def get_track_by_name(name: str) -> str:
-    item = sp.search(name, 1)
-    return item['tracks']['items'][0]['external_urls']['spotify']
+    try:
+        item = sp.search(name, 1)
+        return item['tracks']['items'][0]['external_urls']['spotify']
+    except IndexError: # error when audio wasn't found
+        return "Трек не был найден..."
