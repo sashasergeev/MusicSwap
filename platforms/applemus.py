@@ -8,13 +8,16 @@ import aiohttp
     which i don't have, bot won't output link.
 """
 
-regex = r'music.apple.com/(\S+)'
 
+class Apple:
+    """ GETTING DATA FROM APPLE MUSIC """
+    regex = r'music.apple.com/(\S+)'
 
-async def get_info_by_url(url: str) -> str:
-    url = re.sub('com/\w+/', 'com/en/', url)
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            data = await resp.read()
-    data = BeautifulSoup(data, 'html.parser')
-    return data.title.text[:-15].replace("by", " ")
+    @classmethod
+    async def get_info_by_url(self, url: str) -> str:
+        url = re.sub('com/\w+/', 'com/en/', url)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                data = await resp.read()
+        data = BeautifulSoup(data, 'html.parser')
+        return data.title.text[:-15].replace("by", " ")

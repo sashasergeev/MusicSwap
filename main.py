@@ -3,11 +3,11 @@ import asyncio
 from vkbottle.bot import Bot, Message
 from vkbottle import Keyboard, Text, KeyboardButtonColor
 
-from platforms import applemus, spotify, vk, yandex
+from platforms import Apple, Spotify, Yandex, VK
 import messages
 
 # INIT BOT
-bot = Bot(api=vk.vk)
+bot = Bot(api=VK.api)
 
 KEYBOARD = Keyboard(one_time=False).add(Text("Информация"),color=KeyboardButtonColor.PRIMARY).get_json()
 
@@ -15,12 +15,12 @@ KEYBOARD = Keyboard(one_time=False).add(Text("Информация"),color=Keybo
 async def links_to_attached(url: str) -> None:
     # LINK FROM OTHER PLATFORMS TO VK AUDIO CASE
     track_info = None
-    if "spotify" in url: track_info = await spotify.get_info_by_url(url)
-    elif "apple" in url: track_info = await applemus.get_info_by_url(url)
-    elif "yandex" in url: track_info = await yandex.get_info_by_url(url)
+    if "spotify" in url: track_info = await Spotify.get_info_by_url(url)
+    elif "apple" in url: track_info = await Apple.get_info_by_url(url)
+    elif "yandex" in url: track_info = await Yandex.get_info_by_url(url)
     if not track_info or track_info == messages.NOT_FOUND:
         return None
-    return await vk.get_track_id(track_info)
+    return await VK.get_track_id(track_info)
 
 
 @bot.on.message(text="/start")
@@ -41,8 +41,8 @@ async def attached_to_links(message: Message, from_id: int = None):
     # WHEN USER ATTACHES AN VK AUDIO, BOT WILL SEND ITS LINKS FROM SUPPORTED PLATFPRMS
     audio_data = message.attachments[0].dict()
     query = f"{audio_data['audio']['artist']} {audio_data['audio']['title']}"
-    spotify_link, yandex_link = await asyncio.gather(spotify.get_track_by_name(query),
-                                                    yandex.get_track_by_name(query))
+    spotify_link, yandex_link = await asyncio.gather(Spotify.get_track_by_name(query),
+                                                    Yandex.get_track_by_name(query))
     links = f'Spotify\n{spotify_link}\nYandex Music\n{yandex_link}\nApple Music: В данный момент, сервис недоступен.'
     await bot.api.messages.send(peer_id=user_id, message=links, random_id=0)
 

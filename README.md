@@ -1,4 +1,5 @@
 # :headphones: MusicSwap 
+#### [:link: LINK TO BOT :link:](https://vk.com/im?sel=-207239765)
 **Nowadays, there is a wide market of media platforms on which you can listen music. The problem is that you and your friends can use different platforms which makes music sharement time consuming.
 In order to make this process easier and faster this bot was created.**
 
