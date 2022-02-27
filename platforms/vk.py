@@ -1,5 +1,4 @@
 import aiohttp
-import requests
 
 from decouple import config
 from vkbottle import API
@@ -12,8 +11,6 @@ vk = API(token, True)
 token_audio = config('VK_AUTH_TOKEN_KATE')
 user_agent = config('VK_AUTH_AGENT')
 headers = {'User-Agent': user_agent}
-sess = requests.session()
-sess.headers.update({'User-Agent': user_agent})
 
 
 async def get_track_id(searchTrack: str) -> str:
