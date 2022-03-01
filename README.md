@@ -7,6 +7,8 @@ In order to make this process easier and faster this bot was created.**
 User sends attached track *or* track link to bot and receives links to this track on other platforms.
 Bot also works with group chats.
 
+This project contain **2 bots**: one for **VK** and another if for **Telegram**.
+
 ## Faced problems :imp:
 1. Closed VK Audio api
     

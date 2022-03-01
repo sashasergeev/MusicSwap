@@ -1,10 +1,10 @@
 import asyncio
 
+from vkbottle import Keyboard, KeyboardButtonColor, Text
 from vkbottle.bot import Bot, Message
-from vkbottle import Keyboard, Text, KeyboardButtonColor
 
-from platforms import Apple, Spotify, Yandex, VK
 import messages
+from platforms import VK, Apple, Spotify, Yandex
 
 # INIT BOT
 bot = Bot(api=VK.api)
