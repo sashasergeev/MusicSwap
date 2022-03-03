@@ -1,5 +1,6 @@
 # :headphones: MusicSwap 
-#### [:link: LINK TO BOT :link:](https://vk.com/im?sel=-207239765)
+#### [:link: TELEGRAM BOT :link:](https://telegram.me/MusicSwapBot)
+#### [:link: VK BOT :link:](https://vk.com/im?sel=-207239765)
 **Nowadays, there is a wide market of media platforms on which you can listen music. The problem is that you and your friends can use different platforms which makes music sharement time consuming.
 In order to make this process easier and faster this bot was created.**
 
@@ -28,9 +29,10 @@ This project contain **2 bots**: one for **VK** and another if for **Telegram**.
 - [Apple Music](https://music.apple.com/)
 
 
-## Used libraries :electric_plug:
+## Used libraries/tools :electric_plug:
 > aiohttp - for making requests   
 > python decouple - enviroment variables  
 > beautifulsoup4 - scrape data from apple music   
 > async spotify - to obtain data about tracks on spotify    
 > vkbottle - bot functionality and to obtain data about tracks on vk 
+> Docker
