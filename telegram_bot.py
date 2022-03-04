@@ -11,6 +11,18 @@ TOKEN = config('TELEGRAM_BOT_TOKEN')
 bot = AsyncTeleBot(TOKEN)
 
 
+async def gen_links_btns(spotify: str, yandex: str, vk: str):
+    markup = types.InlineKeyboardMarkup()
+    markup.row_width = 2
+    markup.add(types.InlineKeyboardButton("Spotify", url=spotify),
+                types.InlineKeyboardButton("Yandex Music", url=yandex),
+                types.InlineKeyboardButton("VK",
+                                            url=f"https://vk.com/audio{vk}"),
+                types.InlineKeyboardButton("Apple (Недоступно)",
+                                                callback_data="unavailable"))
+    return markup 
+
+
 @bot.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
     await bot.reply_to(message, messages.WELCOME)
@@ -31,10 +43,16 @@ async def convert_link(message: types.Message):
     if not track_info or track_info == messages.NOT_FOUND:
         return await bot.reply_to(message, messages.ERROR)
 
-    spotify_link, yandex_link = await asyncio.gather(Spotify.get_track_by_name(track_info),
-                                                    Yandex.get_track_by_name(track_info))
-    links = f'Spotify\n{spotify_link}\nYandex Music\n{yandex_link}\nApple Music: В данный момент, сервис недоступен.'
-    await bot.reply_to(message, links)
+    spotify_link, yandex_link, vk_link =  await asyncio.gather(
+                            Spotify.get_track_by_name(track_info),
+                            Yandex.get_track_by_name(track_info),
+                            VK.get_track_id(track_info))
+
+    await bot.reply_to(message, messages.GOOD,
+                reply_markup= await gen_links_btns(
+                                            spotify_link,
+                                            yandex_link,
+                                            vk_link))
 
 
 async def main():

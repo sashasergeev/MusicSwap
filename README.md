@@ -34,5 +34,5 @@ This project contain **2 bots**: one for **VK** and another if for **Telegram**.
 > python decouple - enviroment variables  
 > beautifulsoup4 - scrape data from apple music   
 > async spotify - to obtain data about tracks on spotify    
-> vkbottle - bot functionality and to obtain data about tracks on vk 
+> vkbottle - bot functionality and to obtain data about tracks on vk    
 > Docker
